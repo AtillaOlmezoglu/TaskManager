@@ -28,7 +28,7 @@ public class TasksController : ControllerBase
     {
         _userService.CreateTask(model);
 
-        return Ok(new { message = "Task created!"});
+        return Created("", new { message = "Task created!"});
     }
 
     [HttpPut("{id}")]
@@ -44,6 +44,6 @@ public class TasksController : ControllerBase
     {
         _userService.DeleteTask(id);
 
-        return Ok(new { message = "Task deleted!" });
+        return NoContent();
     }
 }
