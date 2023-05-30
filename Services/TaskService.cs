@@ -4,7 +4,7 @@ using TaskManagerAPI.Models.Entities;
 
 namespace TaskManagerAPI.Services;
 
-public interface IUserService
+public interface ITaskService
 {
     IEnumerable<UserTask> GetAllTasks();
     void CreateTask(UserTaskDto model);
@@ -12,11 +12,11 @@ public interface IUserService
     void DeleteTask(int id);
 }
 
-public class UserService : IUserService
+public class TaskService : ITaskService
 {
     private TaskManagerContext _context;
 
-    public UserService(TaskManagerContext context)
+    public TaskService(TaskManagerContext context)
     {
         _context = context;
     }

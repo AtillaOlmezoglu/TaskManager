@@ -9,8 +9,8 @@ namespace TaskManagerAPI.Features.Tasks;
 [ApiController]
 public class TasksController : ControllerBase
 {
-    private IUserService _userService;
-    public TasksController(IUserService userService)
+    private ITaskService _userService;
+    public TasksController(ITaskService userService)
     {
         _userService = userService;
     }
