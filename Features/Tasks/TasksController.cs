@@ -15,7 +15,7 @@ public class TasksController : ControllerBase
         _userService = userService;
     }
 
-    [HttpGet]
+    [HttpGet("Get-all-tasks")]
     public IActionResult GetAllTasks()
     {
         var tasks = _userService.GetAllTasks();
@@ -23,7 +23,7 @@ public class TasksController : ControllerBase
         return Ok(tasks);
     }
 
-    [HttpPost]
+    [HttpPost("Create")]
     public IActionResult CreateTask(UserTaskDto model)
     {
         _userService.CreateTask(model);
@@ -31,7 +31,7 @@ public class TasksController : ControllerBase
         return Created("", new { message = "Task created!"});
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("Update/{id}")]
     public IActionResult UpdateTask(int id, UpdateUserTaskDto model)
     {
         _userService.UpdateTask(id, model);
@@ -39,7 +39,7 @@ public class TasksController : ControllerBase
         return Ok(new { message = "Task updated!" });
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete{id}")]
     public IActionResult DeleteTask(int id)
     {
         _userService.DeleteTask(id);
