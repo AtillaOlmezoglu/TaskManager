@@ -43,11 +43,22 @@ public class TaskService : ITaskService
 
     public void UpdateTask(int id, UpdateUserTaskDto model)
     {
-        throw new NotImplementedException();
+        var task = _context.Tasks.Find(id) ?? throw new KeyNotFoundException("That task doesnt exist.");
+
+        task.Title = model.Title;
+        task.Description = model.Description;
+        task.DueDate = model.DueDate;
+        task.IsCompleted = model.IsCompleted;
+
+        _context.Tasks.Update(task);
+        _context.SaveChanges();
     }
 
     public void DeleteTask(int id)
     {
-        throw new NotImplementedException();
+        var task = _context.Tasks.Find(id) ?? throw new KeyNotFoundException("That task doesnt exist.");
+
+        _context.Tasks.Remove(task);
+        _context.SaveChanges();
     }
 }
