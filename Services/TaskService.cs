@@ -28,7 +28,17 @@ public class TaskService : ITaskService
 
     public void CreateTask(UserTaskDto model)
     {
-        throw new NotImplementedException();
+        var task = new UserTask
+        {
+            Title = model.Title,
+            Description = model.Description,
+            DueDate = model.DueDate,
+            CreatedDate = DateTime.Now,
+            IsCompleted = false,
+        };
+
+        _context.Tasks.Add(task);
+        _context.SaveChanges();
     }
 
     public void UpdateTask(int id, UpdateUserTaskDto model)
