@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagerAPI.Models.DTO;
 using TaskManagerAPI.Services;
 
 namespace TaskManagerAPI.Features.Tasks;
@@ -17,23 +18,23 @@ public class TasksController : ControllerBase
     [HttpGet]
     public IActionResult GetAllTasks()
     {
-        var tasks = _userService.GetAll();
+        var tasks = _userService.GetAllTasks();
 
         return Ok(tasks);
     }
 
     [HttpPost]
-    public IActionResult CreateTask(CreateRequest model)
+    public IActionResult CreateTask(UserTaskDto model)
     {
-        _userService.Create(model);
+        _userService.CreateTask(model);
 
         return Ok(new { message = "Task created!"});
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateTask(int id, UpdateRequest model)
+    public IActionResult UpdateTask(int id, UpdateUserTaskDto model)
     {
-        _userService.Update(id, model);
+        _userService.UpdateTask(id, model);
 
         return Ok(new { message = "Task updated!" });
     }
@@ -41,7 +42,7 @@ public class TasksController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeleteTask(int id)
     {
-        _userService.Delete(id);
+        _userService.DeleteTask(id);
 
         return Ok(new { message = "Task deleted!" });
     }
