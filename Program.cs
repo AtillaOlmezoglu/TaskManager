@@ -19,6 +19,16 @@ builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddDbContext<TaskManagerContext>
     (options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("Default")));
@@ -35,6 +45,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 
