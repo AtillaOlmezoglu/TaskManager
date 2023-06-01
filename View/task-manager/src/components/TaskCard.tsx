@@ -58,6 +58,10 @@ const TaskCard: FC = (): ReactElement => {
   const handleDeleteTask = async (id: number) => {
     try {
         await deleteTask(id);
+
+        const updateTasks = await getAllTasks();
+        setTasks(updateTasks);
+
         alert("Task deleted!")
     } catch (error) {
         console.log(error)
@@ -110,7 +114,7 @@ const TaskCard: FC = (): ReactElement => {
               label="Complete"
               labelPlacement="start"
             />
-            <Box onClick={() => handleDeleteTask(task.id)}>
+            <Box sx={{ cursor: "pointer" }} onClick={() => handleDeleteTask(task.id)}>
               <DeleteOutlineIcon />
             </Box>
           </CardActions>
