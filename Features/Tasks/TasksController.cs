@@ -16,33 +16,33 @@ public class TasksController : ControllerBase
     }
 
     [HttpGet("Get-all-tasks")]
-    public IActionResult GetAllTasks()
+    public async Task<IActionResult> GetAllTasks()
     {
-        var tasks = _userService.GetAllTasks();
+        var tasks = await _userService.GetAllTasks();
 
         return Ok(tasks);
     }
 
     [HttpPost("Create")]
-    public IActionResult CreateTask(UserTaskDto model)
+    public async Task<IActionResult> CreateTask(UserTaskDto model)
     {
-        _userService.CreateTask(model);
+        await _userService.CreateTask(model);
 
         return Created("", new { message = "Task created!"});
     }
 
     [HttpPut("Update/{id}")]
-    public IActionResult UpdateTask(int id, UpdateUserTaskDto model)
+    public async Task<IActionResult> UpdateTask(int id, UpdateUserTaskDto model)
     {
-        _userService.UpdateTask(id, model);
+        await _userService.UpdateTask(id, model);
 
         return Ok(new { message = "Task updated!" });
     }
 
     [HttpDelete("Delete{id}")]
-    public IActionResult DeleteTask(int id)
+    public async Task<IActionResult> DeleteTask(int id)
     {
-        _userService.DeleteTask(id);
+        await _userService.DeleteTask(id);
 
         return NoContent();
     }

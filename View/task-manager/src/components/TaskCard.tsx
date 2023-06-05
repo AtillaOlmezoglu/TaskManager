@@ -119,7 +119,7 @@ const TaskCard: FC = (): ReactElement => {
             </Box>
           </CardActions>
         </Card>
-      ))}
+      )).reverse()}
     </Box>
   );
 };
