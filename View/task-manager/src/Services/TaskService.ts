@@ -12,6 +12,16 @@ export async function getAllTasks() {
   }
 }
 
+export async function createTask(taskData: object) {
+  try {
+    const response = await axios.post(`https://localhost:7258/api/Tasks/Create`, taskData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 export async function updateTask(
   id: number,
   title: string,

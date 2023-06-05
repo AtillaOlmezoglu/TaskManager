@@ -86,7 +86,7 @@ const TaskCard: FC = (): ReactElement => {
   return (
     <Box>
       {tasks.map((task) => (
-        <Card elevation={20} key={task.id}>
+        <Card sx={{ maxWidth: "400px", mt: "30px" }} elevation={20} key={task.id}>
           <CardContent sx={{ textAlign: "start", pb: "0" }}>
             <Typography variant="caption">
               {getDaysAgo(task.createdDate)}
@@ -102,7 +102,7 @@ const TaskCard: FC = (): ReactElement => {
               </Typography>
             </Box>
           </CardContent>
-          <CardActions sx={{ display: "flex", flexDirection: "row", gap: 14 }}>
+          <CardActions sx={{ display: "flex", flexDirection: "row", gap: 29 }}>
             <FormControlLabel
               value="Start"
               control={
